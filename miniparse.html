@@ -22,7 +22,7 @@
             /* リサイズ用のハンドル
              * リサイズができる場所はウィンドウ右下の16x16ピクセルの場所
              * この部分が完全に透明だとマウス入力が透過してしまってサイズを変更できなくなる */
-            /* background-image: url(handle.png); */
+            background-image: url(handle.png);
             background-position: bottom right;
             background-repeat: no-repeat;
             box-sizing: border-box;
@@ -54,6 +54,11 @@
             white-space: nowrap;
             text-overflow: ellipsis;
         }
+		
+		#combatantTableBody img {
+			height: 20px;
+			display: block;
+		}
 		
 		.regularText {
 			color: #E2EBF5;
@@ -127,25 +132,26 @@
 			{ text: "", width: "5%", align: "center" },
             { text: "Name", width: "25%", align: "left" },
             //{ text: "Job", width: "8%", align: "center" },
-            { text: "DPS (%)", width: "18%", align: "center", span: 2 },
+            { text: "DPS", width: "8%", align: "center" },
+			{ text: "(%)", width: "8%", align: "right" },
             //{ text: "HPS (%)", width: "18%", align: "center", span: 2 },
             //{ text: "Acc.(%)", width: "16%", align: "right" },
-            { text: "Crt.(%)", width: "14%", align: "right" },
+            { text: "Crt.(%)", width: "10%", align: "right" },
         ];
 
         // 表示するデータの定義
         var bodyDefine =
         [
             { text: rankingText, width: "5%", align: "center", effect: deadYatsuEffect },
-			{ html: "<img src='./icons/{ImgFile}.png' />", width: "5%", align: "center" }
+			{ html: "<img src='./icons/{ImgFile}.png' />", width: "5%", align: "center" },
             { text: "{name}", width: "25%" },
             //{ text: "{Job}", width: "8%", align: "center", color: jobColor },
-            { text: "{encdps}", width: "16%", align: "right" },
-            { text: "{damage%}", width: "5%", align: "right", color: "red" },
+            { text: "{encdps}", width: "8%", align: "right" },
+            { text: "{damage%}", width: "8%", align: "right", color: "red" },
             //{ text: "{enchps}", width: "16%", align: "right" },
             //{ text: "{healed%}", width: "5%", align: "right", color: "green" },
             //{ text: "{tohit}%", width: "16%", align: "right" },
-            { text: "{crithit%}", width: "14%", align: "right" },
+            { text: "{crithit%}", width: "10%", align: "right" },
         ];
 
         // 順位を表示する（text に関数を指定する例）
@@ -184,7 +190,8 @@
 			if (name.search("Garuda") != -1) return "Garuda";
 			if (name.search("Titan") != -1) return "Titan";
 			if (name.search("Ifrit") != -1) return "Ifrit";
-			if (name.search("(") != -1) return "Choco"; 
+			if (name.search("Limit Break") != -1) return "Limit Break";
+			if (name.search("\\(") != -1) return "Choco"; 
 			return "";
 		}
         
