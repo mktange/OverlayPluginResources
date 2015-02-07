@@ -143,7 +143,7 @@
         var bodyDefine =
         [
             { text: rankingText, width: "5%", align: "center", effect: deadYatsuEffect },
-			{ html: "<img src='./icons/{ImgFile}.png' />", width: "5%", align: "center" },
+			{ html: "{JobIcon}", width: "5%", align: "center" },
             { text: "{name}", width: "25%" },
             //{ text: "{Job}", width: "8%", align: "center", color: jobColor },
             { text: "{encdps}", width: "8%", align: "right" },
@@ -183,7 +183,7 @@
 		}
 		
 		
-		function getImgFile(job, name) {
+		function getJobIcon(job, name) {
 			if (job) return job;
 			if (name.search("Eos") != -1) return "Eos";
 			if (name.search("Selene") != -1) return "Selene";
@@ -302,7 +302,11 @@
             var combatantIndex = 0;
             for (var combatantName in data.Combatant) {
                 var combatant = data.Combatant[combatantName];
-				combatant.ImgFile = getImgFile(combatant.Job, combatantName);
+				
+				combatant.JobIcon = getJobIcon(combatant.Job, combatantName);
+				if (combatant.JobIcon) {
+				    combatant.JobIcon = "<img src='./icons/" + combatant.JobIcon + ".png' />";
+				}
 				
                 var tableRow = newTableBody.insertRow(newTableBody.rows.length);
                 for (var i = 0; i < bodyDefine.length; i++)
